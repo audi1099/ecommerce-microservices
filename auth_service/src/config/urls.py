@@ -16,7 +16,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from users.views import CustomTokenObtainPairView, RegisterView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/register/', RegisterView.as_view(), name='register'),
 ]
