@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path
 from users.views import CustomTokenObtainPairView, RegisterView
 from protected.views import TestAuthView
+from users.views import check_phone_availability
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/protected/', TestAuthView.as_view(), name='protected'),
+    path('api/check-phone/', check_phone_availability, name='check-phone'),
 ]
