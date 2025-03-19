@@ -5,8 +5,10 @@ from django.db import models
 class CustomUser(AbstractUser):
     # Добавляем новое поле 'phone'
     phone = models.CharField(
-        max_length=15,
-        blank=True,  # Поле необязательное
+        max_length=20,
+        unique=True,
+        db_index=True,
+        blank=False,  # Поле необязательное
         verbose_name='Номер телефона'  # Человекочитаемое имя
     )
 
