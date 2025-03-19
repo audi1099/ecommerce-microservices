@@ -9,7 +9,10 @@ class CustomUser(AbstractUser):
         unique=True,
         db_index=True,
         blank=False,  # Поле необязательное
-        verbose_name='Номер телефона'  # Человекочитаемое имя
+        verbose_name='Номер телефона',  # Человекочитаемое имя
+        error_messages= {
+            'unique': "Этот номер телефона уже зарегистрирован",
+        }
     )
 
     # Дополнительные поля (по желанию):

@@ -3,6 +3,7 @@ from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
 import phonenumbers
 from phonenumbers import NumberParseException
 from .models import CustomUser
+from rest_framework.validators import UniqueValidator
 
 # Для JWT
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
@@ -15,6 +16,16 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 # Для регистрации
 class UserSerializer(serializers.ModelSerializer):
+    phone = serializers.CharField(
+        required=True,
+        validators=[
+            UniqueValidator(
+                queryset=CustomUser.objects.all(),
+                message="Этот номер телефона уже зарегистрирован"
+            )
+        ]
+    )
+
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password', 'phone']
