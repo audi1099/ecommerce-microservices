@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from users.views import CustomTokenObtainPairView, RegisterView
+from users.views import CustomTokenObtainPairView, RegisterView, PasswordResetView, PasswordResetConfirmView
 from protected.views import TestAuthView
 from users.views import check_phone_availability
 
@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/register/', RegisterView.as_view(), name='register'),
     path('api/protected/', TestAuthView.as_view(), name='protected'),
     path('api/check-phone/', check_phone_availability, name='check-phone'),
+    path('api/password-reset/', PasswordResetView.as_view(), name='password-reset'),
+    path('api/password-reset/confirm/', PasswordResetConfirmView.as_view(), name='password-reset-confirm'),
 ]

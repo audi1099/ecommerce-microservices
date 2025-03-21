@@ -1,6 +1,7 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
 from .models import CustomUser
+from .models import PasswordResetCode
 
 
 class CustomUserAdmin(UserAdmin):
@@ -12,5 +13,8 @@ class CustomUserAdmin(UserAdmin):
         ('Дополнительные данные', {'fields': ('phone',)}),
     )
 
-
 admin.site.register(CustomUser, CustomUserAdmin)
+admin.site.register(PasswordResetCode)
+
+
+

@@ -1,4 +1,5 @@
 from django.contrib.auth.models import AbstractUser
+import random
 from django.db import models
 
 
@@ -27,3 +28,13 @@ class CustomUser(AbstractUser):
 
     def __str__(self):
         return self.username  # Отображение в админке
+
+
+class PasswordResetCode(models.Model):
+    user = models.ForeignKey(CustomUser, on_delete=models.CASCADE)
+    code = models.CharField(max_length=6)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    @classmethod
+    def generate_code(cls):
+        return str(random.randint(100000, 999999))
