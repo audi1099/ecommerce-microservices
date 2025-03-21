@@ -72,6 +72,13 @@ class PasswordResetConfirmView(APIView):
                 code=code
             )
 
+            if reset_code.is_expired():
+                reset_code.delete()
+                return Response(
+                    {"error": "Код просрочен"},
+                    status=status.HTTP_400_BAD_REQUEST
+                )
+
             # Обновляем пароль
             user = reset_code.user
             user.set_password(new_password)
