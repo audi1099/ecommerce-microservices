@@ -7,6 +7,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from .models import PasswordResetCode, CustomUser
+from rest_framework.throttling import AnonRateThrottle
 
 class PasswordResetView(APIView):
     permission_classes = []
@@ -97,4 +98,11 @@ class PasswordResetConfirmView(APIView):
                 {"error": "Неверный код или номер телефона"},
                 status=status.HTTP_400_BAD_REQUEST
             )
+
+class PasswordResetConfirmView(APIView):
+    throttle_classes = [AnonRateThrottle]
+
+
+
+
 
