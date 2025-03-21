@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 import random
 from django.db import models
+from django.utils import timezone
+from datetime import timedelta
 
 
 class CustomUser(AbstractUser):
@@ -38,3 +40,6 @@ class PasswordResetCode(models.Model):
     @classmethod
     def generate_code(cls):
         return str(random.randint(100000, 999999))
+
+    def is_expired(self):
+        return timezone.now() > self.created_at + timedelta(minutes=15)
