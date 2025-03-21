@@ -55,6 +55,10 @@ SIMPLE_JWT = {
     'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
 }
 
+TWILIO_ACCOUNT_SID = 'ваш_sid'
+TWILIO_AUTH_TOKEN = 'ваш_токен'
+TWILIO_PHONE_NUMBER = '+номер_twilio'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
